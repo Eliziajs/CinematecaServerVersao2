@@ -2,6 +2,7 @@ package br.com.appcinemateca.api.dto;
 
 import br.com.appcinemateca.api.domain.Filme;
 import br.com.appcinemateca.api.domain.Personagem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.*;
@@ -14,7 +15,9 @@ public class AtorDTO implements Serializable {
     private Long id;
     private String nome;
 
+    //@JsonIgnore
     private List<Filme> filmes = new ArrayList<>();
+    //@JsonIgnore
     private Set<Personagem> personagem = new HashSet<>();
     public AtorDTO() {
 

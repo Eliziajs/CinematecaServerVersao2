@@ -28,8 +28,11 @@ public class UserDTO extends RepresentationModel<UserDTO> implements Serializabl
 
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date data = new Date();
+	@JsonIgnore
 	private List<Curtida> curtidas = new ArrayList<>();
+	@JsonIgnore
 	private List<Post> post = new ArrayList<>();
+
 
 	public UserDTO() {
 		super();
@@ -59,9 +62,9 @@ public class UserDTO extends RepresentationModel<UserDTO> implements Serializabl
 		this.userName = userName;
 	}
 
-	/**public String getPassword() {
+	public String getPassword() {
 		return password;
-	}**/
+	}
 
 	public void setPassword(String password) {
 		this.password = password;

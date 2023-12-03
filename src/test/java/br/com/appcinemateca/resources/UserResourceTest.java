@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,6 +35,7 @@ class UserResourceTest {
     private static final String NAME     = "Valdir";
     private static final String EMAIL    = "valdir@mail.com";
     private static final String PASSWORD = "123";
+    private static final String DATA = "2023/01/2";
 
     private User user = new User();
     private UserDTO userDTO = new UserDTO();
@@ -134,7 +136,8 @@ class UserResourceTest {
     }
 
     private void startUser() {
-        user = new User(ID, NAME, EMAIL,  PASSWORD);
-        userDTO = new UserDTO(ID, NAME, EMAIL, PASSWORD);
+        Date data = new Date();
+        user = new User(ID, NAME, EMAIL,PASSWORD, data);
+        userDTO = new UserDTO(ID, NAME, EMAIL, PASSWORD, data);
     }
 }

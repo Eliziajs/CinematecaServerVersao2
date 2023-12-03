@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,8 +59,8 @@ public class UserResource {
 	)
 	public ResponseEntity<CollectionModel<UserDTO>> findAll() {
 
-		List<User> list = service.findAll();
-		List<UserDTO> listDTO = list.stream().map(x -> mapper.map(x, UserDTO.class)).collect(Collectors.toList());
+		Collection<User> list = service.findAll();
+		Collection<UserDTO> listDTO = list.stream().map(x -> mapper.map(x, UserDTO.class)).collect(Collectors.toList());
 		var link = linkTo(methodOn(UserResource.class).findAll()).withSelfRel();
 		CollectionModel<UserDTO> result = CollectionModel.of(listDTO, link);
 		// return result;
@@ -113,11 +114,11 @@ public class UserResource {
 )
 	public ResponseEntity<UserDTO> create(@RequestBody UserDTO obj) {
 
-		//var entity = mapper.map(obj, UserDTO.class);
-		//var vo = mapper.map(service.create(entity), UserDTO.class);
+		var entity = mapper.map(obj, UserDTO.class);
+		var vo = mapper.map(service.create(entity), UserDTO.class);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest().path(ID).buildAndExpand(service.create(obj).getId()).toUri();
-		//vo.add(linkTo(methodOn(UserResource.class).findById(vo.getId())).withSelfRel());
+		vo.add(linkTo(methodOn(UserResource.class).findById(vo.getId())).withSelfRel());
 
 		return ResponseEntity.created(uri).build();// metodo atualizado ver hetoas
 	}

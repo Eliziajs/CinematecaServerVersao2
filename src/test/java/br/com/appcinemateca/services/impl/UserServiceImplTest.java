@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,7 @@ class UserServiceImplTest {
     private static final String NAME     = "Valdir";
     private static final String EMAIL    = "valdir@mail.com";
     private static final String PASSWORD = "123";
+    private static final Date DATA = new Date();
 
     private static final String OBJETO_NAO_ENCONTRADO = "Objeto não encontrado";
     private static final String E_MAIL_JA_CADASTRADO_NO_SISTEMA = "E-mail já cadastrado no sistema";
@@ -96,6 +98,7 @@ class UserServiceImplTest {
         assertEquals(NAME, response.get(INDEX).getUserName());
         assertEquals(EMAIL, response.get(INDEX).getEmail());
         assertEquals(PASSWORD, response.get(INDEX).getPassword());
+        assertEquals(DATA, response.get(INDEX).getData());
     }
 
     @Test
@@ -111,6 +114,7 @@ class UserServiceImplTest {
         assertEquals(NAME, response.getUserName());
         assertEquals(EMAIL, response.getEmail());
         assertEquals(PASSWORD, response.getPassword());
+        assertEquals(DATA, response.getData());
     }
 
     @Test
@@ -138,6 +142,7 @@ class UserServiceImplTest {
         assertEquals(NAME, response.getUserName());
         assertEquals(EMAIL, response.getEmail());
         assertEquals(PASSWORD, response.getPassword());
+        assertEquals(DATA, response.getData());
     }
 
     @Test
@@ -174,8 +179,9 @@ class UserServiceImplTest {
     }
 
     private void startUser() {
-        user = new User(ID, NAME, PASSWORD,EMAIL);
-        userDTO = new UserDTO(ID, NAME, PASSWORD,EMAIL);
-        optionalUser = Optional.of(new User(ID, NAME, PASSWORD,EMAIL));
+
+        user = new User(ID, NAME,EMAIL, PASSWORD,DATA);
+        userDTO = new UserDTO(ID, NAME, EMAIL,PASSWORD, DATA);
+        optionalUser = Optional.of(new User(ID, NAME, EMAIL, PASSWORD,DATA));
     }
 }

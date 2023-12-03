@@ -52,6 +52,8 @@ public class User implements UserDetails, Serializable {
 	)
 	private List<Permission> permissions;
 
+
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user")
 	private List<Curtida> curtidas = new ArrayList<>();
 

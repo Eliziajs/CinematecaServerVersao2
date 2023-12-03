@@ -56,15 +56,6 @@ public class CurtidaFilmes {
             }
     )
 
-    /**public ResponseEntity<CollectionModel<CurtidaDTO>> findByQuantidadeAndFilme_id(Long quantidade, Long filme_id) {
-
-        List<Curtida> list = service.findByQuantidadeAndFilme_id(quantidade, filme_id);
-        List<CurtidaDTO> listDTO = list.stream().map(x -> mapper.map(x, CurtidaDTO.class)).collect(Collectors.toList());
-        var link = linkTo(methodOn(CurtidaResource.class).findAll()).withSelfRel();
-        CollectionModel<CurtidaDTO> result = CollectionModel.of(listDTO, link);
-        // return result;
-        return ResponseEntity.ok().body(result);
-    }**/
     public ResponseEntity Long () {
         Long list = service.qtd();
         // return result;
